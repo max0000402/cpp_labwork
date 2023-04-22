@@ -18,6 +18,14 @@ void Tree::draw(HDC& hdc) {
 	BareTree::draw(hdc);
 }
 
+void Tree::accept(ITreeVisitor& visitor) {
+	visitor.VisitTree(this);
+}
+
+COLORREF Tree::get_leaf_color() {
+	return m_color_leaf;
+}
+
 Tree::~Tree() {
 	DeleteObject(m_brush_leaf);
 }

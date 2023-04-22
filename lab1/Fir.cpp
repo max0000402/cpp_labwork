@@ -60,6 +60,10 @@ int Fir::get_height() {
 	return 70;
 }
 
+void Fir::accept(ITreeVisitor& visitor) {
+	visitor.VisitFir(this);
+}
+
 Fir::~Fir() {
 	DeleteObject(m_brush);
 }

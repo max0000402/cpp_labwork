@@ -101,6 +101,10 @@ void BareTree::process_key_down(WPARAM key) {
 	}
 }
 
+void BareTree::accept(ITreeVisitor& visitor) {
+	visitor.VisitBareTree(this);
+}
+
 BareTree::~BareTree() {
 	DeleteObject(m_pen);
 	DeleteObject(m_brush);

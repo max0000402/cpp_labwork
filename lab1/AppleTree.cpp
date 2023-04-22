@@ -34,6 +34,10 @@ void AppleTree::draw(HDC& hdc) {
 	Ellipse(hdc, get_x() + offset_x, get_y() + offset_y, get_x() + offset_x + 8, get_y() + offset_y + 8);
 }
 
+void AppleTree::accept(ITreeVisitor& visitor) {
+	visitor.VisitAppleTree(this);
+}
+
 AppleTree::~AppleTree() {
 	DeleteObject(m_brush_apple);
 }

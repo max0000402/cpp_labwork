@@ -1,4 +1,5 @@
 #pragma once
+
 #include "BareTree.hpp"
 
 class Fir : public BareTree {
@@ -9,5 +10,6 @@ public:
 	void draw(HDC& hdc) override;
 	int get_width() override;
 	int get_height() override;
+	void accept(ITreeVisitor& visitor) override;
 	~Fir() override;
 };

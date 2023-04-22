@@ -130,13 +130,17 @@
     <ClCompile Include="AppleTree.cpp" />
     <ClCompile Include="AppleTree.hpp" />
     <ClCompile Include="Axe.cpp" />
+    <ClCompile Include="AxeVisitor.cpp" />
+    <ClCompile Include="AxeVisitor.hpp" />
     <ClCompile Include="BareTree.cpp" />
     <ClCompile Include="Fir.cpp" />
     <ClCompile Include="Fir.hpp" />
+    <ClCompile Include="ITreeVisitor.hpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="RepairKit.cpp" />
+    <ClCompile Include="RepairKitVisitor.cpp" />
     <ClCompile Include="Stump.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
@@ -146,6 +150,7 @@
     <ClInclude Include="Location.hpp" />
     <ClInclude Include="Point.hpp" />
     <ClInclude Include="RepairKit.hpp" />
+    <ClInclude Include="RepairKitVisitor.hpp" />
     <ClInclude Include="Stump.hpp" />
     <ClInclude Include="Tree.hpp" />
   </ItemGroup>

@@ -13,9 +13,12 @@
 #include "Fir.hpp"
 #include "Stump.hpp"
 
-//static Point* tree = new AppleTree(0, 0, RGB(150, 75, 0), RGB(0, 255, 0), RGB(255, 0, 0));
-//static Point* tree = new Fir(0, 0, RGB(150, 75, 0));
-static Point* tree = new Stump(0, 0, RGB(150, 75, 0));
+#include "AxeVisitor.hpp"
+#include "RepairKitVisitor.hpp"
+
+//static BareTree* tree = new AppleTree(0, 0, RGB(150, 75, 0), RGB(0, 255, 0), RGB(255, 0, 0));
+static BareTree* tree = new Fir(0, 0, RGB(150, 75, 0));
+//static BareTree* tree = new Tree(0, 0, RGB(150, 75, 0), RGB(0, 255, 0));
 static Point* axe = new Axe(100, 0, RGB(150, 75, 0));
 static Point* repair_kit = new RepairKit(200, 0, RGB(200, 200, 200));
 
@@ -86,6 +89,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
 	switch (message) {
 	case WM_KEYDOWN:
 		tree->process_key_down(wParam);
+
+		if (wParam == 'W') {
+			AxeVisitor axe_visitor;
+			tree->accept(axe_visitor);
+			BareTree* new_tree = axe_visitor.get_result();
+			if (tree != new_tree) {
+				delete tree;
+			}
+			tree = new_tree;
+		}
+
+		if (wParam == 'S') {
+			RepairKitVisitor repair_kit_visitor;
+			tree->accept(repair_kit_visitor);
+			BareTree* new_tree = repair_kit_visitor.get_result();
+			if (tree != new_tree) {
+				delete tree;
+			}
+			tree = new_tree;
+		}
 
 		InvalidateRect(hWnd, NULL, TRUE);
 		break;

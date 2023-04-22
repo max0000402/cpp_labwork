@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Point.hpp"
+#include "ITreeVisitor.hpp"
 
 class BareTree : public Point {
 private:
@@ -16,5 +17,6 @@ public:
 	void process_key_down(WPARAM key) override;
 	virtual int get_width();
 	virtual int get_height();
+	virtual void accept(ITreeVisitor& visitor);
 	~BareTree() override;
 };

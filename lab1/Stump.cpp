@@ -66,6 +66,10 @@ int Stump::get_height() {
 	return 73;
 }
 
+void Stump::accept(ITreeVisitor& visitor) {
+	visitor.VisitStump(this);
+}
+
 Stump::~Stump() {
 	DeleteObject(m_brush);
 }
