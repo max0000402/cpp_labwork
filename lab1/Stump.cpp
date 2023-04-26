@@ -2,6 +2,9 @@
 
 Stump::Stump(int x, int y, COLORREF color) : BareTree(x, y, color) {
 	m_brush = CreateSolidBrush(color);
+
+	m_width = 82;
+	m_height = 73;
 }
 
 void Stump::draw(HDC& hdc) {
@@ -56,14 +59,6 @@ void Stump::draw(HDC& hdc) {
 	poly[12].y = get_y() + 10;
 
 	Polygon(hdc, poly, 13);
-}
-
-int Stump::get_width() {
-	return 82;
-}
-
-int Stump::get_height() {
-	return 73;
 }
 
 void Stump::accept(ITreeVisitor& visitor) {

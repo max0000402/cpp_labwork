@@ -1,10 +1,11 @@
 #include "BareTree.hpp"
 
-BareTree::BareTree(int x, int y, COLORREF color) : Point(x, y, color) {
-	m_is_dragging = false;
+BareTree::BareTree(int x, int y, COLORREF color) : ABCFigure(x, y, color) {
+	m_brush = CreateSolidBrush(color);
+	m_pen = CreatePen(PS_SOLID, 2, color);
 
-	m_brush = CreateSolidBrush(get_color());
-	m_pen = CreatePen(PS_SOLID, 2, get_color());
+	m_width = 40;
+	m_height = 130;
 }
 
 void BareTree::draw(HDC& hdc) {
@@ -47,58 +48,6 @@ void BareTree::draw(HDC& hdc) {
 
 	MoveToEx(hdc, get_x() + 16, get_y() + 20, nullptr);
 	LineTo(hdc, get_x() + 24, get_y() + 4);
-}
-
-void BareTree::draw_dragging_rectangle(HDC& hdc) {
-	if (m_is_dragging) {
-		SelectObject(hdc, GetStockObject(BLACK_PEN));
-		SelectObject(hdc, GetStockObject(NULL_BRUSH));
-		Rectangle(hdc, get_x(), get_y(), get_x() + get_width(), get_y() + get_height());
-	}
-}
-
-int BareTree::get_width() {
-	return 40;
-}
-
-int BareTree::get_height() {
-	return 130;
-}
-
-void BareTree::process_left_mouse_down(POINT& p) {
-	if (p.x >= get_x() && p.x <= get_x() + get_width() && p.y >= get_y() && p.y <= get_y() + get_height()) {
-		m_is_dragging = !m_is_dragging;
-	}
-}
-
-void BareTree::process_key_down(WPARAM key) {
-	if (!m_is_dragging) {
-		return;
-	}
-
-	if (key == 'S') {
-		show();
-	}
-
-	if (key == 'H') {
-		hide();
-	}
-
-	if (key == VK_RIGHT) {
-		move(10, 0);
-	}
-
-	if (key == VK_LEFT) {
-		move(-10, 0);
-	}
-
-	if (key == VK_UP) {
-		move(0, -10);
-	}
-
-	if (key == VK_DOWN) {
-		move(0, 10);
-	}
 }
 
 void BareTree::accept(ITreeVisitor& visitor) {

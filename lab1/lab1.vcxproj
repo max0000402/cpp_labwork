@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ABCFigure.cpp" />
     <ClCompile Include="AppleTree.cpp" />
     <ClCompile Include="AppleTree.hpp" />
     <ClCompile Include="Axe.cpp" />
@@ -135,24 +136,31 @@
     <ClCompile Include="BareTree.cpp" />
     <ClCompile Include="Fir.cpp" />
     <ClCompile Include="Fir.hpp" />
+    <ClCompile Include="is_figure_intersec.cpp" />
     <ClCompile Include="ITreeVisitor.hpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="RepairKit.cpp" />
     <ClCompile Include="RepairKitVisitor.cpp" />
     <ClCompile Include="Stump.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ABCFigure.hpp" />
     <ClInclude Include="Axe.hpp" />
     <ClInclude Include="BareTree.hpp" />
+    <ClInclude Include="IAffectable.hpp" />
+    <ClInclude Include="IControllable.hpp" />
+    <ClInclude Include="IDrawable.hpp" />
+    <ClInclude Include="is_figure_intersec.hpp" />
     <ClInclude Include="Location.hpp" />
-    <ClInclude Include="Point.hpp" />
     <ClInclude Include="RepairKit.hpp" />
     <ClInclude Include="RepairKitVisitor.hpp" />
     <ClInclude Include="Stump.hpp" />
     <ClInclude Include="Tree.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

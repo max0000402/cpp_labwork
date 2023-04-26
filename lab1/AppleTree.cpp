@@ -6,6 +6,8 @@ AppleTree::AppleTree(int x, int y, COLORREF color, COLORREF color_leaf, COLORREF
 }
 
 void AppleTree::draw(HDC& hdc) {
+	draw_dragging_rectangle(hdc);
+
 	if (!is_visible()) {
 		return;
 	}

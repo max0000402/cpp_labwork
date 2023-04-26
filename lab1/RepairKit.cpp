@@ -1,11 +1,16 @@
 #include "RepairKit.hpp"
 
-RepairKit::RepairKit(int x, int y, COLORREF color) : Point(x, y, color) {
+RepairKit::RepairKit(int x, int y, COLORREF color) : ABCFigure(x, y, color) {
+	m_width = 100;
+	m_height = 80;
+
 	m_brush_box = CreateSolidBrush(get_color());
 	m_brush_plus = CreateSolidBrush(RGB(255, 0, 0));
 }
 
 void RepairKit::draw(HDC& hdc) {
+	draw_dragging_rectangle(hdc);
+
 	if (!is_visible()) {
 		return;
 	}
@@ -33,6 +38,20 @@ void RepairKit::draw(HDC& hdc) {
 	LineTo(hdc, get_x() + 20, get_y());
 	LineTo(hdc, get_x() + 80, get_y());
 	LineTo(hdc, get_x() + 100, get_y() + offset_y);
+}
+
+void RepairKit::affect(BareTree*& tree) {
+	if (!is_figure_intersec(this, tree)) {
+		return;
+	}
+
+	RepairKitVisitor repair_kit_visitor;
+	tree->accept(repair_kit_visitor);
+	BareTree* new_tree = repair_kit_visitor.get_result();
+	if (tree != new_tree) {
+		delete tree;
+	}
+	tree = new_tree;
 }
 
 RepairKit::~RepairKit() {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ITreeVisitor.hpp"
 
 #include "BareTree.hpp"

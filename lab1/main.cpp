@@ -2,9 +2,8 @@
 #include <string.h>
 #include <tchar.h>
 #include <windows.h>
-#include <string>
 
-#include "Point.hpp"
+#include "ABCFigure.hpp"
 #include "BareTree.hpp"
 #include "Tree.hpp"
 #include "AppleTree.hpp"
@@ -13,14 +12,13 @@
 #include "Fir.hpp"
 #include "Stump.hpp"
 
-#include "AxeVisitor.hpp"
-#include "RepairKitVisitor.hpp"
+static Axe* axe = new Axe(100, 200, RGB(150, 75, 0));
+static RepairKit* repair_kit = new RepairKit(200, 200, RGB(200, 200, 200));
+static BareTree* trees[] = { new Fir(0, 0, RGB(150, 75, 0)), new AppleTree(100, 0, RGB(150, 75, 0), RGB(0, 255, 0), RGB(255, 0, 0))};
 
-//static BareTree* tree = new AppleTree(0, 0, RGB(150, 75, 0), RGB(0, 255, 0), RGB(255, 0, 0));
-static BareTree* tree = new Fir(0, 0, RGB(150, 75, 0));
-//static BareTree* tree = new Tree(0, 0, RGB(150, 75, 0), RGB(0, 255, 0));
-static Point* axe = new Axe(100, 0, RGB(150, 75, 0));
-static Point* repair_kit = new RepairKit(200, 0, RGB(200, 200, 200));
+static ABCFigure** figures[] = { (ABCFigure**)&axe, (ABCFigure**)& repair_kit, (ABCFigure**)& trees[0], (ABCFigure**)& trees[1] };
+
+static IAffectable<BareTree>* affectable_on_tree_objects[] = { axe, repair_kit };
 
 static TCHAR szWindowClass[] = _T("DesktopApp");
 
@@ -29,6 +27,7 @@ static TCHAR szTitle[] = _T("Labwork 1");
 HINSTANCE hInst;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+bool intersec(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3);
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
@@ -49,9 +48,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION);
 
 	if (!RegisterClassEx(&wcex)) {
-		MessageBox(NULL, _T("Call to RegisterClassEx failed!"),
-			_T("Windows Desktop Guided Tour"), NULL);
-
+		MessageBox(NULL, _T("Call to RegisterClassEx failed!"), szTitle, NULL);
 		return 1;
 	}
 
@@ -62,15 +59,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		800, 600, NULL, NULL, hInstance, NULL);
 
 	if (!hWnd) {
-		MessageBox(NULL, _T("Call to CreateWindow failed!"),
-			_T("Windows Desktop Guided Tour"), NULL);
-
+		MessageBox(NULL, _T("Call to CreateWindow failed!"), szTitle, NULL);
 		return 1;
 	}
 
 	ShowWindow(hWnd, nCmdShow);
 
-	// Main message loop:
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0)) {
 		TranslateMessage(&msg);
@@ -88,36 +82,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
 
 	switch (message) {
 	case WM_KEYDOWN:
-		tree->process_key_down(wParam);
-
-		if (wParam == 'W') {
-			AxeVisitor axe_visitor;
-			tree->accept(axe_visitor);
-			BareTree* new_tree = axe_visitor.get_result();
-			if (tree != new_tree) {
-				delete tree;
-			}
-			tree = new_tree;
+	{
+		
+		for (auto figure : figures) {
+			(*figure)->process_key_down(wParam);
 		}
 
-		if (wParam == 'S') {
-			RepairKitVisitor repair_kit_visitor;
-			tree->accept(repair_kit_visitor);
-			BareTree* new_tree = repair_kit_visitor.get_result();
-			if (tree != new_tree) {
-				delete tree;
+		if (wParam == 'C') {
+			for (auto& tree : trees) {
+				for (auto affectable : affectable_on_tree_objects) {
+					affectable->affect(tree);
+				}
 			}
-			tree = new_tree;
 		}
 
 		InvalidateRect(hWnd, NULL, TRUE);
 		break;
+	}
 	case WM_LBUTTONDOWN:
 		POINT p;
 		GetCursorPos(&p);
 		ScreenToClient(hWnd, &p);
 
-		tree->process_left_mouse_down(p);
+		for (auto figure : figures) {
+			(*figure)->process_left_mouse_down(p);
+		}
 
 		InvalidateRect(hWnd, NULL, TRUE);
 
@@ -125,9 +114,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam,
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 
-		tree->draw(hdc);
-		axe->draw(hdc);
-		repair_kit->draw(hdc);
+		for (auto figure : figures) {
+			(*figure)->draw(hdc);
+		}
 
 		EndPaint(hWnd, &ps);
 		break;

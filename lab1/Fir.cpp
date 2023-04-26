@@ -2,6 +2,9 @@
 
 Fir::Fir(int x, int y, COLORREF color) : BareTree(x, y, color) {
 	m_brush = CreateSolidBrush(color);
+
+	m_width = 60;
+	m_height = 70;
 }
 
 void Fir::draw(HDC& hdc) {
@@ -50,14 +53,6 @@ void Fir::draw(HDC& hdc) {
 	poly[10].y = get_y() + 25;
 
 	Polygon(hdc, poly, 11);
-}
-
-int Fir::get_width() {
-	return 60;
-}
-
-int Fir::get_height() {
-	return 70;
 }
 
 void Fir::accept(ITreeVisitor& visitor) {

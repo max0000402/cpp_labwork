@@ -6,6 +6,8 @@ Tree::Tree(int x, int y, COLORREF color, COLORREF color_leaf) : BareTree(x, y, c
 }
 
 void Tree::draw(HDC& hdc) {
+	draw_dragging_rectangle(hdc);
+
 	if (!is_visible()) {
 		return;
 	}

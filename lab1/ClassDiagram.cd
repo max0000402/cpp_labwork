@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AppleTree">
+    <Position X="8" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCAAAAAAAAgAAIAAgAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>AppleTree.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AxeVisitor">
+    <Position X="1.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACEAAACAAAAAAgAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>AxeVisitor.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fir">
+    <Position X="6" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAIAACAAAIAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Fir.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITreeVisitor">
+    <Position X="2.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACEAAACAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>ITreeVisitor.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ABCFigure">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAghAAAAAAgBAAAAABAAQACAQACABIAAAAoAICA=</HashCode>
+      <FileName>ABCFigure.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Axe">
+    <Position X="0.75" Y="9.25" Width="1.5" />
+    <InheritanceLine Type="ABCFigure" FixedFromPoint="true">
+      <Path>
+        <Point X="5.562" Y="8.135" />
+        <Point X="5.562" Y="8.875" />
+        <Point X="1.5" Y="8.875" />
+        <Point X="1.5" Y="9.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACBgAAAAAAAAAAAAAAIAAAAAAIAAQAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Axe.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BareTree">
+    <Position X="8" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAIAAAAAAIAAAAAAAAEAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>BareTree.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IControlable">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAIAAAAAAACA=</HashCode>
+      <FileName>IControllable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IDrawable">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAhAAAAAAAAAAIAABAAAACAAAAABAAAAAAAIAA=</HashCode>
+      <FileName>IDrawable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Location">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAIAAAAAQABAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Location.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RepairKit">
+    <Position X="3.25" Y="9.25" Width="1.5" />
+    <InheritanceLine Type="ABCFigure" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="5.562" Y="8.135" />
+        <Point X="5.562" Y="8.875" />
+        <Point X="4" Y="8.875" />
+        <Point X="4" Y="9.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAABAIAAAAAAIAIAAAAAAAAACAAAAA=</HashCode>
+      <FileName>RepairKit.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RepairKitVisitor">
+    <Position X="3.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAACEAAACAAAAAAgAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>RepairKitVisitor.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stump">
+    <Position X="10.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAJAAAAAAIAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stump.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tree">
+    <Position X="8" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAACAAAAAABIAAAAAAAAIAAAAAAAAQAABAAA=</HashCode>
+      <FileName>Tree.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IAffectable&lt;TBase&gt;">
+    <Position X="2.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAffectable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
